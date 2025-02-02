@@ -1,0 +1,51 @@
+# General OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Dependency directories
+node_modules/
+bower_components/
+dist/
+build/
+
+# Ignore virtual environments (for Python backend)
+venv/
+.env
+*.env
+
+# Ignore Python compiled files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore TypeScript build files
+*.tsbuildinfo
+
+# Ignore frontend-specific files
+.vite/
+.next/
+.nuxt/
+out/
+*.cache
+.eslintcache
+.stylelintcache
+
+# Ignore backend-specific files
+.mypy_cache/
+coverage/
+db.sqlite3
+
+# Ignore package lock files (if using Yarn or pnpm)
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
