@@ -1,6 +1,5 @@
 import { useState } from "react";
 import handleSearch from "../api/searchrooms";
-import { useStore } from "zustand";
 import useParamsStore from "../store/store";
 import HotelList from "./hotellist"; // Import the HotelList component
 import axios from "axios";
@@ -19,8 +18,8 @@ const SearchForm = () => {
   const {
     childrenAges,
     setChildrenAges,
-    incrementChildAge,
-    decrementChildAge,
+    // incrementChildAge,
+    // decrementChildAge,
   } = useParamsStore();
   // const [hotels, setHotels] = useState<any[]>([]); // State to store detailed hotel data
   const { hotels, setHotels } = useParamsStore();
@@ -28,17 +27,17 @@ const SearchForm = () => {
   // const { avairooms, setavaiRooms } = useParamsStore();
 
   // Handle adding or subtracting children
-  const handleIncrementChild = () => {
-    incrementChildren; // Increase local children count
-    incrementChildAge(); // Increase all children's age in the store
-  };
+  // const handleIncrementChild = () => {
+  //   incrementChildren; // Increase local children count
+  //   incrementChildAge(); // Increase all children's age in the store
+  // };
 
-  const handleDecrementChild = () => {
-    if (children > 0) {
-      decrementChildren; // Decrease local children count
-      decrementChildAge(); // Decrease all children's age in the store
-    }
-  };
+  // const handleDecrementChild = () => {
+  //   if (children > 0) {
+  //     decrementChildren; // Decrease local children count
+  //     decrementChildAge(); // Decrease all children's age in the store
+  //   }
+  // };
 
   // Handle updating the age of a specific child
   const handleChildAgeChange = (index: number, age: number) => {
@@ -124,9 +123,9 @@ const SearchForm = () => {
     if (!isFormValid()) {
       return;
     }
-    const data = {
-      hotel_code: getCityCode(cityName),
-    };
+    // const data = {
+    //   hotel_code: getCityCode(cityName),
+    // };
     const similarityMap: Record<string, number> = {};
 
     try {
@@ -146,16 +145,20 @@ const SearchForm = () => {
         console.log("response data of image match:", response.data);
 
         // Similarity data from response
-        const similarityData: Record<string, { score: number, image_paths: any }> =
-          response.data.results; // Assumes the response includes hotel codes with similarity scores
+        // const similarityData: Record<string, { score: number, image_paths: any }> =
+        //   response.data.results; // Assumes the response includes hotel codes with similarity scores
+        const similarityData: Record<string, number> =
+          response.data.results;
         console.log("similarityData:", similarityData);
 
         // Create a similarity map from the response
         // const similarityMap: Record<string, number> = {};
+
         Object.keys(similarityData).forEach((key) => {
-          similarityMap[key] = similarityData[key].score;
+          similarityMap[key] = similarityData[key];
         });
-        console.log("Similarity map:", similarityMap);
+        // similarityMap = similarityData;
+        // console.log("Similarity map:", similarityMap);
       }
 
       console.log("here1");
@@ -291,7 +294,7 @@ const SearchForm = () => {
 
   // const { hotels, setHotels } = useParamsStore();
   // const { allHotels, setallHotels } = useParamsStore();
-  const [showAllHotels, setShowAllHotels] = useState(true);
+  // const [showAllHotels, setShowAllHotels] = useState(true);
 
   return (
     <div>

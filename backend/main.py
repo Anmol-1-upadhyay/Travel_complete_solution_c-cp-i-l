@@ -3,7 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from routes.voice import voice_router
 from routes.chatbot import chatbot_router
 from routes.api import image_router
-from routes.f42 import imagesearch_router
+from routes.imagesearch import imagesearch_router
 # from routes.model import imagedesc_router
 
 chatbotapi = FastAPI()
