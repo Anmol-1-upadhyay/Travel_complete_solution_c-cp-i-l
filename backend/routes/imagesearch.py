@@ -100,7 +100,7 @@ class ImageSearchEngine:
             self.pca = pickle.load(f)
         self.index = self.build_faiss_index(self.embeddings)
     
-    def search_similar_images(self, query_image_paths):
+    def search_similar_images(self, query_image_paths, k_neighbors=10):
         hotel_scores = {}
         
         for query_image_path in query_image_paths:
@@ -114,13 +114,12 @@ class ImageSearchEngine:
             query_features = np.ascontiguousarray(query_features, dtype="float32")
             faiss.normalize_L2(query_features)
             
-            distances, indices = self.index.search(query_features, 10)  # Return top 10 results
+            distances, indices = self.index.search(query_features, k_neighbors)  # Return top k results
 
             image_scores = {}
             for i, idx in enumerate(indices[0]):
-                if distances[0][i] > 0.35:
-                    hotel_name = os.path.basename(os.path.dirname(self.image_paths[idx]))
-                    image_scores[hotel_name] = max(image_scores.get(hotel_name, 0), distances[0][i])
+                hotel_name = os.path.basename(os.path.dirname(self.image_paths[idx]))
+                image_scores[hotel_name] = max(image_scores.get(hotel_name, 0), distances[0][i])
 
             for hotel, score in image_scores.items():
                 if hotel not in hotel_scores:
@@ -128,11 +127,12 @@ class ImageSearchEngine:
                 hotel_scores[hotel].append(score)
 
         final_scores = {
-            hotel: np.mean(scores) for hotel, scores in hotel_scores.items() if np.mean(scores) > 0.25
+            hotel: np.mean(scores) for hotel, scores in hotel_scores.items() 
         }
         sorted_scores = dict(sorted(final_scores.items(), key=lambda item: item[1], reverse=True))
         return sorted_scores
 
+# For Test purpose only
 def display_results(results):
     root = tk.Tk()
     root.title("Hotel Image Search Results")
