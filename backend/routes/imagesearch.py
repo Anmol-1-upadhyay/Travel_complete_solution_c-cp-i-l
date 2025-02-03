@@ -118,9 +118,8 @@ class ImageSearchEngine:
 
             image_scores = {}
             for i, idx in enumerate(indices[0]):
-                if distances[0][i] > 0.35:
-                    hotel_name = os.path.basename(os.path.dirname(self.image_paths[idx]))
-                    image_scores[hotel_name] = max(image_scores.get(hotel_name, 0), distances[0][i])
+                hotel_name = os.path.basename(os.path.dirname(self.image_paths[idx]))
+                image_scores[hotel_name] = max(image_scores.get(hotel_name, 0), distances[0][i])
 
             for hotel, score in image_scores.items():
                 if hotel not in hotel_scores:
@@ -133,6 +132,7 @@ class ImageSearchEngine:
         sorted_scores = dict(sorted(final_scores.items(), key=lambda item: item[1], reverse=True))
         return sorted_scores
 
+# For Test purpose only
 def display_results(results):
     root = tk.Tk()
     root.title("Hotel Image Search Results")
