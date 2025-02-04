@@ -4,6 +4,7 @@
 
 This repository contains the frontend and backend code for the project. The frontend is built with React and TypeScript, while the backend uses FastAPI and Python.
 
+![Project](./frontend/public/10.png)
 ![Project](./frontend/public/1.png)
 
 ### Detailed Documentation - https://drive.google.com/file/d/1FSo4lB1WArJyfAmAhz1pXY1dMcdJGUV7/view?usp=sharing
