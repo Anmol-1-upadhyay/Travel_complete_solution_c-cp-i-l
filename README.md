@@ -7,9 +7,6 @@ This repository contains the frontend and backend code for the project. The fron
 ![Project](./frontend/public/10.png)
 ![Project](./frontend/public/1.png)
 
-### Detailed Documentation - https://drive.google.com/file/d/1FSo4lB1WArJyfAmAhz1pXY1dMcdJGUV7/view?usp=sharing
-### Video link - https://drive.google.com/file/d/1Sgfv0sW-UmcjzdFYjcBKKmFRRXUpA2Ts/view?usp=sharing
-
 ## Frontend
 
 ### Installation Guide
